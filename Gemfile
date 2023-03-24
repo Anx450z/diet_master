@@ -72,3 +72,5 @@ end
 gem "pg", "~> 1.4"
 
 gem "jwt", "~> 2.7"
+
+gem "bcrypt", "~> 3.1"
