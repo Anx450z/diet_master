@@ -8,9 +8,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.errors.empty?
-      render json: { status: "successfully created new user" }
+    @user = User.new(user_params)
+    if @user.save
+      reset_session
+      log_in @user
+      render json: {user: @user, status: 'successfully created new user' }
     else
       render json: { error: @user.errors }, status: :unprocessable_entity
     end
